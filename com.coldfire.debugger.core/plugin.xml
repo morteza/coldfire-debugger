@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.coldfire.debugger.core.PreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            delegate="com.coldfire.debugger.core.launch.DebugDelegate"
+            delegateDescription="The Coldfire Debugger Launcher supports debugging C/C++ application on Coldfire targets"
+            delegateName="Coldfire Debugger Launcher"
+            id="com.coldfire.debugger.core.LaunchType"
+            modes="debug"
+            name="Coldfire Debugger"
+            public="true"
+            sourceLocatorId="org.eclipse.cdt.debug.core.sourceLocator"
+            sourcePathComputerId="org.eclipse.cdt.debug.core.sourcePathComputer">
+      </launchConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.cdt.debug.core.CDebugger">
+      <debugger
+            class="com.coldfire.debugger.core.launch.GDBDebugger"
+            cpu="*"
+            id="com.coldfire.debugger.core.launch.GDBDebugger"
+            modes="run"
+            name="Coldfire Embedded GDB"
+            platform="*">
+      </debugger>
+   </extension>
+   <extension
+         id="com.coldfire.debugger.core.CommandFactory"
+         name="Coldfire Debugger CommandFactory"
+         point="org.eclipse.cdt.debug.mi.core.commandFactories">
+      <commandFactory
+            class="com.coldfire.debugger.core.launch.CFCommandFactory"
+            debuggerID="com.coldfire.debugger.core.launch.GDBDebugger"
+            id="com.coldfire.debugger.core.launch.CFCommandFactory"
+            miVersions="mi,mi1,mi2"
+            name="Standard"
+            platforms="*">
+      </commandFactory>
+   </extension>
+   <extension
+         point="org.eclipse.cdt.core.templates">
+      <template
+            filterPattern=".*"
+            id="com.coldfire.debugger.core.template"
+            location="template/ColdfireProjectTemplate.xml"
+            projectType="com.coldfire.debugger.builder.project"
+            usageDescription="Simple Coldfire ELF">
+         <toolChain
+               id="com.coldfire.debugger.builder.toolchain">
+         </toolChain>
+      </template>
+   </extension>
+</plugin>

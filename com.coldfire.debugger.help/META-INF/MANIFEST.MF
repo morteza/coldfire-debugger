@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Coldfire Debugger Help Plug-in
+Bundle-SymbolicName: com.coldfire.debugger.help;singleton:=true
+Bundle-Version: 1.0.1.20070823
+Bundle-Vendor: Morteza Ansari
+Fragment-Host: com.coldfire.debugger.core;bundle-version="1.0.1.20070823"

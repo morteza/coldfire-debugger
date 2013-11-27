@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Coldfire Debugger User Guide" topic="html/cfd_home.html">
+   <topic label="Before You Begin" href="html/cfd_before_begin.html" />
+   <topic label="Overview" href="html/cfd_overview.html" />
+   <topic label="Getting Started">
+      <anchor id="gettingstarted"/>
+   </topic>
+   <topic label="Reference">
+      <anchor id="reference"/>
+   </topic>
+</toc>

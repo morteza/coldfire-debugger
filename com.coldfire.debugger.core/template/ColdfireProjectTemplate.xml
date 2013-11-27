@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<template 	type="ProjTempl" 
+			version="1.0.0.20070823" 
+			supplier="Morteza Ansari" 
+			revision="1" 
+			author="Morteza Ansari"
+        	id="ELF" label="Coldfire Hello World!" 
+        	description="A skeletal Coldfire project. Creates folders for sources and includes."
+         	help="help.html">
+	<property-group id="basics" 
+					label="Basic Settings" 
+					description="Basic properties of a Coldfire project" 
+					type="PAGES-ONLY" 
+					help="help.html">
+		<property 	id="author"
+				  	label="Author"
+            		description="Name of the author"
+            		type="input"
+            		pattern=".*"
+            		default=""
+            		hidden="false"
+            		persist="true"/>
+		<property	id="copyright"
+	            	label="Copyright Notice"
+	            	description="Your copyright notice"
+		            type="input"
+		            pattern=".*"
+		            default="Your copyright notice"
+		            hidden="false"
+		            persist="true"/>
+		<property 	id="outputELF"
+		            label="Output ELF Image:"
+		            description="Output ELF image, ready to download into target"
+		            default="main.elf"
+		            type="input"
+		            pattern=".*"
+		            hidden="false"
+		            mandatory="true"
+		            persist="true"/>
+		<property 	id="targetCPU"
+		            label="Target Coldfire Processor"
+		            description="Select the target coldfire processor"
+		            type="select"
+		            hidden="false"
+		            mandatory="true"
+		            persist="true">
+		            <item label="MCF5272" selected="true" name="mcf5272"/>
+		            <item label="MCF5282" selected="false" name="mcf5282"/>
+		        </property>
+    </property-group>
+
+    <property-group id="directories" 
+    				label="Project Directories" 
+    				description="Generated files will be copied to the specified directories under the project root directory" 
+    				type="PAGES-ONLY" 
+    				help="help.html">
+    <property id="incDir"
+                label="Include"
+                description="Directory for m68k C++ header files"
+                type="input"
+        default="inc"
+                pattern="[a-zA-Z0-9]+"
+                mandatory="true"
+                persist="true"/>
+
+    <property id="sourceDir"
+                label="Source"
+                description="Directory for m68k C++ source files"
+                type="input"
+                default="src"
+                pattern="[a-zA-Z0-9]+"
+                mandatory="true"
+                persist="true"/>
+    </property-group>
+    
+    <process type="org.eclipse.cdt.templates.NewColdfireProject">
+        <simple name="name" value="$(projectName)"/>
+        <simple name="outputELF" value="$(outputELF)"/>
+        <simple name="targetCPU" value="$(targetCPU)"/>
+    </process>
+
+    <process type="org.eclipse.cdt.templateengine.CreateSourceFolder">
+        <simple name="projectName" value="$(projectName)"/>
+        <simple name="path" value="$(sourceDir)"/>
+    </process>
+
+    <process type="org.eclipse.cdt.templateengine.CreateIncludeFolder">
+        <simple name="projectName" value="$(projectName)"/>
+        <simple name="path" value="$(incDir)"/>
+    </process>
+
+    <process type="org.eclipse.cdt.templateengine.AddFiles">
+        <simple name="projectName" value="$(projectName)"/>
+        <complex-array name="files">
+            <element>
+                <simple name="source" value="inc/main.h"/>
+                <simple name="target" value="$(incDir)/$(baseName).h"/>
+                <simple name="replaceable" value="true"/>
+            </element>
+            <element>
+                <simple name="source" value="src/main.cpp"/>
+                <simple name="target" value="$(sourceDir)/$(baseName).cpp"/>
+                <simple name="replaceable" value="true"/>
+            </element>
+        </complex-array>
+    </process>
+
+    <process type="org.eclipse.cdt.templateengine.AppendToMBSStringListOptionValues">
+        <simple name="projectName" value= "$(projectName)"/>      
+        <complex-array name="resourcePaths">
+            <element>
+                <simple name="id" value=".*linker\.libraries\.libraries.*" />
+                <simple-array name="values">
+                    <element value="euser.lib" />
+                </simple-array>
+                <simple name="path" value="" />
+            </element>
+        </complex-array>
+    </process>
+</template>

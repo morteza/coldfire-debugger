@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Coldfire Debugger Core
+Bundle-SymbolicName: com.coldfire.debugger.core;singleton:=true
+Bundle-Version: 1.0.1.20070823
+Bundle-Vendor: Morteza Ansarinia
+Require-Bundle: org.eclipse.cdt.core,
+ org.eclipse.core.runtime,
+ org.eclipse.cdt.debug.core,
+ org.eclipse.cdt.debug.mi.core,
+ org.eclipse.cdt.launch,
+ org.eclipse.ui,
+ org.eclipse.core.variables,
+ org.eclipse.debug.ui
+Bundle-Activator: com.coldfire.debugger.core.Activator
+Eclipse-LazyStart: true
+Bundle-ClassPath: com.coldfire.debugger.core.jar
+Export-Package: com.coldfire.debugger.core,
+ com.coldfire.debugger.core.launch

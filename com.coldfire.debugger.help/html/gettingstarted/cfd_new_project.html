@@ -1,0 +1,32 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Creating New Coldfire Project (Coldfire Debugger)</title>
+	<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="UTF-8" TYPE="text/css">
+</head>
+<body>
+<h1>Creating New Coldfire C/C++ Project</h1>
+<p>
+The following describe steps to make a Coldfire C/C++ project. The makefile making
+the codes for the Coldfire architecture will be generated automatically by the Coldfire
+Debugger.</p>
+<h3>Creating Project</h3><br />
+<ol>
+  <li>Select File->New->Project menu. 
+  <br /><img src="../images/cfd_new_project1.jpg" alt="New Project menu"></li>
+  <li>In the new project wizard page, expand C or C++ folder and select C or C++
+  project. Then click Next.<br /><img src="../images/cfd_new_project2.jpg" alt="C++ Project page"></li> 
+  <li>Enter the project name. Select Coldfire Debugger Project from the project 
+  types list, and select Coldfire GNU toolchain as the project toolchain.
+  Click Finish (By default the Coldfire Debugger will choose m68k-coff as toolchain. but
+  you can change the makeing parameters by clicking the next button).A new project
+  will be added to the workspace package explorer view.
+  <br /><b>At this time the debugger only supports Debug method. You can
+	remove debug informations inside the Project Builder properties and remove the
+	-g parameters tick.</b><br /><img src="../images/cfd_new_project3.jpg" alt="Toolchain settings"></li> 
+</ol>
+
+</body>
+</html>

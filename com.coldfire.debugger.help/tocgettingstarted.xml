@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?NLS TYPE="org.eclipse.help.toc"?>
+
+<toc label="Getting Started" link_to="toc.xml#gettingstarted"> 
+	<topic label="Creating New Coldfire Project" href="html/gettingstarted/cfd_new_project.html" />
+	<topic label="Debugging Projects" href="html/gettingstarted/cfd_debug.html" /> 
+	<topic label="Creating Projects from Template" href="html/gettingstarted/cfd_project_template.html" /> 
+	<topic label="Programming the Target" href="html/gettingstarted/cfd_programming.html" /> 
+
+</toc>

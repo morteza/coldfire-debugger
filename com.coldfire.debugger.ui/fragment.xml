@@ -1,0 +1,440 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<fragment>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.coldfire.debugger.ui.MainPreferencePage"
+            id="com.coldfire.debugger.ui.MainPreferencePage"
+            name="Coldfire Debugger">
+      </page>
+      <page
+            category="com.coldfire.debugger.ui.MainPreferencePage"
+            class="com.coldfire.debugger.ui.GDBPreferencePage"
+            id="com.coldfire.debugger.ui.GDBPreferencePage"
+            name="GDB Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="com.coldfire.debugger.ui.ViewCategory"
+            name="Coldfire Debugger">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="com.coldfire.debugger.ui.launch.CFTabGroup"
+            id="com.coldfire.debugger.ui.LaunchTabGroup"
+            type="com.coldfire.debugger.core.LaunchType">
+      </launchConfigurationTabGroup>
+   </extension>
+   <extension
+         point="org.eclipse.ui.actionSets">
+      <actionSet
+            id="com.coldfire.debugger.ui.ProgrammerActionSet"
+            label="Coldfire Programmer ActionSet"
+            visible="true">
+         <menu
+               id="com.coldfire.debugger.ui.ProgrammerMenu"
+               label="&amp;Coldfire">
+            <separator
+                  name="com.coldfire.debugger.ui.ProgrammerMenu.Separator">
+            </separator>
+         </menu>
+         <action
+               class="com.coldfire.debugger.ui.CFProgrammer"
+               icon="icons/prgmr.gif"
+               id="com.coldfire.debugger.ui.ProgrammerAction"
+               label="Coldfire Programmer"
+               toolbarPath="com.coldfire.debugger.ui.ProgrammerMenu.Separator"
+               tooltip="Program Coldfire Targets">
+         </action>
+      </actionSet>
+   </extension>
+   <extension
+         id="com.coldfire.debugger.builder.builddef"
+         name="Coldfire Build Definitions"
+         point="org.eclipse.cdt.managedbuilder.core.buildDefinitions">
+      <managedBuildRevision
+            fileVersion="1.0.0">
+      </managedBuildRevision>
+      <projectType
+            id="com.coldfire.debugger.builder.project"
+            isAbstract="false"
+            isTest="false"
+            name="Coldfire Debugger Project">
+         <configuration
+               artifactExtension="elf"
+               cleanCommand="del /F /S /Q"
+               errorParsers="org.eclipse.cdt.core.MakeErrorParser;org.eclipse.cdt.core.GCCErrorParser;org.eclipse.cdt.core.GLDErrorParser;org.eclipse.cdt.core.GASErrorParser"
+               id="com.coldfire.debugger.builder.configuration.debug"
+               name="Debug"
+               postannouncebuildStep=""
+               postbuildStep="">
+            <toolChain
+                  archList="all"
+                  id="com.coldfire.debugger.builder.toolchain"
+                  isAbstract="false"
+                  name="Coldfire GNU Toolchain"
+                  osList="all">
+               <targetPlatform
+                     archList="all"
+                     binaryParser="org.eclipse.cdt.core.ELF"
+                     id="com.coldfire.debugger.builder.target.coldfire"
+                     isAbstract="false"
+                     name="Coldfire Target"
+                     osList="all">
+               </targetPlatform>
+               <builder
+                     arguments="-k"
+                     buildfileGenerator="org.eclipse.cdt.managedbuilder.makegen.gnu.GnuMakefileGenerator"
+                     command="make"
+                     errorParsers="org.eclipse.cdt.core.MakeErrorParser"
+                     id="com.coldfire.debugger.builder.builder"
+                     isAbstract="false"
+                     isVariableCaseSensitive="false"
+                     name="Coldfire Makefile Generator">
+               </builder>
+               <tool
+                     command="m68k-elf-gcc"
+                     errorParsers="org.eclipse.cdt.core.GCCErrorParser"
+                     id="com.coldfire.debugger.builder.compiler"
+                     isAbstract="false"
+                     name="m68k Compiler"
+                     outputFlag="-o">
+                  <inputType
+                        dependencyContentType="org.eclipse.cdt.core.cHeader"
+                        dependencyExtensions="h"
+                        id="com.coldfire.debugger.builder.inputs.c"
+                        multipleOfType="false"
+                        name="C Source Files"
+                        sourceContentType="org.eclipse.cdt.core.cSource"
+                        sources="c">
+                  </inputType>
+                  <outputType
+                        buildVariable="COBJS"
+                        id="com.coldfire.debugger.builder.outputs.obj"
+                        multipleOfType="false"
+                        name="Object Files"
+                        outputContentType="org.eclipse.cdt.managedbuilder.core.compiledObjectFile"
+                        outputs="obj">
+                  </outputType>
+                  <optionCategory
+                        id="com.coldfire.debugger.builder.cats.dirs"
+                        name="Directories">
+                  </optionCategory>
+                  <option
+                        browseType="directory"
+                        category="com.coldfire.debugger.builder.cats.dirs"
+                        command="-I"
+                        id="com.coldfire.debugger.builder.incpath"
+                        isAbstract="false"
+                        name="Include Paths (-I)"
+                        valueType="includePath">
+                  </option>
+                  <optionCategory
+                        id="com.coldfire.debugger.builder.cats.syms"
+                        name="Symbols">
+                  </optionCategory>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.syms"
+                        command="-U"
+                        id="com.coldfire.debugger.builder.undef"
+                        isAbstract="false"
+                        name="Undefine Syms (-U)"
+                        valueType="stringList">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.syms"
+                        command="-D"
+                        id="com.coldfire.debugger.builder.def"
+                        isAbstract="false"
+                        name="Define Syms (-D)"
+                        valueType="definedSymbols">
+                  </option>
+                  <optionCategory
+                        id="com.coldfire.debugger.builder.cats.warns"
+                        name="Warnings">
+                  </optionCategory>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.warns"
+                        command="-w"
+                        defaultValue="false"
+                        id="com.coldfire.debugger.builder.nowarn"
+                        isAbstract="false"
+                        name="No Warnings (-w)"
+                        valueType="boolean">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.warns"
+                        command="-Wall"
+                        defaultValue="true"
+                        id="com.coldfire.debugger.builder.allwarn"
+                        isAbstract="false"
+                        name="All Warnings (-Wall)"
+                        valueType="boolean">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.warns"
+                        command="-Werror"
+                        defaultValue="false"
+                        id="com.coldfire.debugger.builder.warnerr"
+                        isAbstract="false"
+                        name="Warnings as Errors (-Werror)"
+                        valueType="boolean">
+                  </option>
+                  <optionCategory
+                        id="com.coldfire.debugger.builder.cats.other"
+                        name="Other Options">
+                  </optionCategory>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.other"
+                        command="-g"
+                        defaultValue="false"
+                        id="com.coldfire.debugger.builder.debug"
+                        isAbstract="false"
+                        name="Generate Debugging Info (-g)"
+                        valueType="boolean">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.other"
+                        command="-v"
+                        defaultValue="false"
+                        id="com.coldfire.debugger.builder.verbose"
+                        isAbstract="false"
+                        name="Verbose (-v)"
+                        valueType="boolean">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.other"
+                        command="-ansi"
+                        defaultValue="false"
+                        id="com.coldfire.debugger.builder.ansi"
+                        isAbstract="false"
+                        name="ANSI Compatibility Mode (-ansi)"
+                        valueType="boolean">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.other"
+                        id="com.coldfire.debugger.builder.optimize"
+                        isAbstract="false"
+                        name="Optimizations"
+                        valueType="enumerated">
+                     <enumeratedOptionValue
+                           command="-O0"
+                           id="com.coldfire.debugger.builder.noopt"
+                           isDefault="false"
+                           name="No Optimizations (-O0)">
+                     </enumeratedOptionValue>
+                     <enumeratedOptionValue
+                           command="-O1"
+                           id="com.coldfire.debugger.builder.slightopt"
+                           isDefault="false"
+                           name="Slight Optimizations (-O1)">
+                     </enumeratedOptionValue>
+                     <enumeratedOptionValue
+                           command="-O2"
+                           id="com.coldfire.debugger.builder.modopts"
+                           isDefault="true"
+                           name="Moderate Optimizations (-O2)">
+                     </enumeratedOptionValue>
+                     <enumeratedOptionValue
+                           command="-O3"
+                           id="com.coldfire.debugger.builder.heavyopt"
+                           isDefault="false"
+                           name="Heavy Optimizations (-O3)">
+                     </enumeratedOptionValue>
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.other"
+                        command="-Os"
+                        defaultValue="false"
+                        id="com.coldfire.debugger.builder.sizeopt"
+                        isAbstract="false"
+                        name="Optimize for Size (-Os)"
+                        valueType="boolean">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.other"
+                        defaultValue="-c"
+                        id="com.coldfire.debugger.builder.otherargs"
+                        isAbstract="false"
+                        name="Other Arguments"
+                        valueType="string">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.other"
+                        id="com.coldfire.debugger.builder.compiler.cputype"
+                        isAbstract="false"
+                        name="CPU Type"
+                        valueType="enumerated">
+                     <enumeratedOptionValue
+                           command="-mcpu=5272"
+                           id="com.coldfire.debugger.builder.cpus.mcf5272"
+                           name="MCF5272">
+                     </enumeratedOptionValue>
+                     <enumeratedOptionValue
+                           command="-mcpu=5282"
+                           id="com.coldfire.debugger.builder.cpus.mcf5282"
+                           name="MCF5282">
+                     </enumeratedOptionValue>
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.other"
+                        command="-DF_CPU="
+                        defaultValue="1000000"
+                        id="com.coldfire.debugger.builder.fcpu"
+                        isAbstract="false"
+                        name="Frequency"
+                        tip="Clock frequency in Hz"
+                        valueType="string">
+                  </option>
+               </tool>
+               <tool
+                     command="m68k-elf-gcc"
+                     errorParsers="org.eclipse.cdt.core.GLDErrorParser"
+                     id="com.coldfire.debugger.builder.linker"
+                     isAbstract="false"
+                     name="m68k Linker"
+                     outputFlag="-o">
+                  <inputType
+                        buildVariable="COBJS"
+                        dependencyContentType="org.eclipse.cdt.core.cSource"
+                        dependencyExtensions="c"
+                        id="com.coldfire.debugger.builder.inputs.obj"
+                        multipleOfType="true"
+                        name="Object Files"
+                        sourceContentType="org.eclipse.cdt.managedbuilder.core.compiledObjectFile"
+                        sources="obj">
+                  </inputType>
+                  <outputType
+                        buildVariable="ELFS"
+                        id="com.coldfire.debugger.builder.outputs.elf"
+                        multipleOfType="false"
+                        name="ELF Binary Files"
+                        outputs="elf">
+                  </outputType>
+                  <optionCategory
+                        id="com.coldfire.debugger.builder.cats.libs"
+                        name="Libraries">
+                  </optionCategory>
+                  <option
+                        browseType="file"
+                        category="com.coldfire.debugger.builder.cats.libs"
+                        command="-l"
+                        id="com.coldfire.debugger.builder.libs"
+                        isAbstract="false"
+                        name="Libraries (-l)"
+                        valueType="libs">
+                  </option>
+                  <option
+                        browseType="directory"
+                        category="com.coldfire.debugger.builder.cats.libs"
+                        command="-L"
+                        id="com.coldfire.debugger.builder.libpath"
+                        isAbstract="false"
+                        name="Libraries Path (-L)"
+                        valueType="stringList">
+                  </option>
+                  <optionCategory
+                        id="com.coldfire.debugger.builder.cats.objs"
+                        name="Objects">
+                  </optionCategory>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.objs"
+                        command="-Xlinker"
+                        id="com.coldfire.debugger.builder.otherlink"
+                        isAbstract="false"
+                        name="(-Xlinker) Options"
+                        valueType="stringList">
+                  </option>
+                  <option
+                        browseType="file"
+                        category="com.coldfire.debugger.builder.cats.objs"
+                        id="com.coldfire.debugger.builder.otherobjs"
+                        isAbstract="false"
+                        name="Other Objects (*.o)"
+                        valueType="stringList">
+                  </option>
+                  <optionCategory
+                        id="com.coldfire.debugger.builder.cats.linkermisc"
+                        name="Other Options">
+                  </optionCategory>
+                  <option
+                        browseType="file"
+                        category="com.coldfire.debugger.builder.cats.linkermisc"
+                        command="-Wl,-Map,"
+                        defaultValue=".map"
+                        id="com.coldfire.debugger.builder.genmap"
+                        isAbstract="false"
+                        name="Map Filename"
+                        valueType="string">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.linkermisc"
+                        command="-s"
+                        defaultValue="false"
+                        id="com.coldfire.debugger.builder.nosyms"
+                        isAbstract="false"
+                        name="Omit Symbols (-s)"
+                        valueType="boolean">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.linkermisc"
+                        id="com.coldfire.debugger.builder.otherlinkargs"
+                        isAbstract="false"
+                        name="Other Arguments"
+                        valueType="string">
+                  </option>
+                  <option
+                        category="com.coldfire.debugger.builder.cats.linkermisc"
+                        id="com.coldfire.debugger.builder.linker.cputype"
+                        isAbstract="false"
+                        name="CPU Type"
+                        valueType="enumerated">
+                     <enumeratedOptionValue
+                           command="-mcpu=5272"
+                           id="com.coldfire.debugger.builder.cpus.mcf5272"
+                           name="MCF5272">
+                     </enumeratedOptionValue>
+                     <enumeratedOptionValue
+                           command="-mcpu=5282"
+                           id="com.coldfire.debugger.builder.cpus.mcf5282"
+                           name="MCF5282">
+                     </enumeratedOptionValue>
+                  </option>
+               </tool>
+            </toolChain>
+         </configuration>
+      </projectType>
+   </extension>
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="com.coldfire.debugger.core.LaunchType"
+            icon="icons/c_app.gif"
+            id="com.coldfire.debugger.ui.LaunchTabGroupImage">
+      </launchConfigurationTypeImage>
+   </extension>
+   <extension
+         point="org.eclipse.cdt.debug.ui.CDebuggerPage">
+      <debuggerPage
+            class="com.coldfire.debugger.ui.launch.GDBDebuggerPage"
+            debuggerID="com.coldfire.debugger.core.launch.GDBDebugger"
+            id="com.coldfire.debugger.ui.launch.GDBDebuggerPage">
+      </debuggerPage>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="com.coldfire.debugger.ui.ProjectPropertyPage"
+            id="com.coldfire.debugger.ui.ProjectPropertyPage"
+            name="Coldfire Debugger Project"
+            nameFilter="*"
+            objectClass="org.eclipse.core.resources.IProject">
+      </page>
+   </extension>
+
+</fragment>

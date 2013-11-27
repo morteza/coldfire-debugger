@@ -1,0 +1,56 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Debugging Projects (Coldfire Debugger)</title>
+	<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="UTF-8" TYPE="text/css">
+</head>
+<body>
+<h1>Debugging Project</h1>
+<p>
+In this tutorial you will learn how to debug your Coldfire C/C++ applications remotely inside your target
+board. The target is the board with an Coldfire heart. All debugging actions are preformed using GNU GDB
+toolkit ported to m68k.
+<br />
+Before you start debugging, check out the supported Coldfire processors to be sure about compability with
+your target board. Debug will use processor type defined in the toolchain settings, described eaarlier.
+<br />
+Debug session needs compiled ELF image file, ready to download. So be sure to compile correctly your final
+codes before debugging. Debugger is asking you to select downloadable image file.
+</p>
+<h3>Creating Debug Configurations</h3>
+<p>
+After compiling your application successfully, you should test correctness of the application. For hardware
+debugging you can't run the application on the host computer (your PC), so you should hook up the board, 
+download the result image into the target board and run (debug) it in-circuit. The Coldfire debugger plugin
+supports debugging your application running on the target system. The followings are steps you should take
+to create a new debug configuration.
+<br />
+<b>Step 1: </b> Compile your codes as described in earlier chapters to create ELF image.
+<br />
+<b>Step 2: </b> Select <b>Run > Open Debug Dialog...</b> menu.
+<br /><img src="../images/cfd_debug1.jpg" alt="Debug Dialog...">
+<br />
+A window containing list of debug configurations will be displayed.
+<br />
+<b>Step 3: </b>Select <b>Coldfire Debugger</b>
+<br />
+<b>Step 4: </b>Click <b>New</b>
+<br />
+A Debug configurations is created. Now you should select working project and its desired to download image.
+For both of them you can search using <b>Browse</b> button which shows a filtered appropriate objects inside
+workspace and projects trees.
+<b>Step 5: </b>Select <b>Debugger</b> tab in the newly created page.
+<br />
+<b>Step 6: </b>Change the selected <b>Debugger</b> to <b>Coldfire Embedded GDB</b> (select fron the list 
+of avaiable debuggers).
+<br />
+The main tab settings contain gdb commands and initial scripts to set appropriate settings. The default
+value for the <b>GDB debugger</b> is 'm68k-elf-gdb'. It works great for ELF images. You can change this
+if you are using different debugger or image type. For example, 'm68k-coff-gdb' is used to debug COFF images. 
+<br /><img src="../images/cfd_debug2.jpg" alt="change GDB debugger">
+<br />
+<b>Step 7:</b>Click <b>Debug</b> to start debugger and change the workspace looking to the debug perspective.
+<br />
+</p>
+</body>
+</html>

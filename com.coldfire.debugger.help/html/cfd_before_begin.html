@@ -1,0 +1,45 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Before You Begin (Coldfire Debugger)</title>
+	<LINK REL="STYLESHEET" HREF="book.css" CHARSET="UTF-8" TYPE="text/css">
+</head>
+<body>
+<h1>Before You Begin</h1>
+<p>
+If you want to use Coldfire debugger, you will require a m68k toolchain before build
+and debug any Coldfire related project.
+The debugger provides integration with GNU m68k toolchain, including make, gcc compiler,
+gdb debugger and Coldfire programmer. The default setting for Coldfire project 
+builder needs GNU m68k-coff toolchain to make an coff object file capable to download
+into target.</p><p>
+The Coldfire debugger designed to work under Linux and Windows but you can change
+some minors to make it compatible with other platforms.</p><br />
+<h3>Windows</h3><p>
+For windows the main choice is MinGW (Cygwin is also supported). MinGW is a port
+of GNU toolchain to the Windows platform. The m68k-coff toolchain is provided by
+the Coldfire debugger plugin. MinGW provides the best integration with this plugin
+due to its great compability with the CDT.</p><p>
+The following are MinGW installation instructions. Notice that the links may change
+over time as new versions come out.</p>
+<ol>
+  <li>Download and run the MinGW setup program,
+  (<a href="http://downloads.sourceforge.net/mingw/MinGW-5.1.3.exe">
+  MinGW-5.1.3.exe</a>).
+  <li>You may select the Current or Candidate version of these tools.</li>
+  <li>The MinGW setup program currently does not install the gdb bdm debugger.
+  Thus the Coldfire debugger provides  m68k-coff-gdb inside its archive. If you want
+  different format of image files (e.g. ELF format), change the program directory
+  from the Coldfire Debugger preferences page. The exact steps to change this path
+  is provided in the reference section.
+</ol> 
+<h3>Linux</h3>
+<p>For Linux platform the toolchain installation is too easy as you can download
+latest m68k-elf toolchain from the uClinux website:</p>
+<a href="http://www.uclinx.org/downloads">uClinux download directory (inaccurate)</a>.
+<p><b>It is recommended  to use Linux instead of windows. It is more comfortable than
+windows environment.</b></p> 
+</body>
+</html>

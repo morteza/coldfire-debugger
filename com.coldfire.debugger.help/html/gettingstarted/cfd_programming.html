@@ -1,0 +1,63 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Programming the Target (Coldfire Debugger)</title>
+	<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="UTF-8" TYPE="text/css">
+</head>
+<body>
+<h1>Programming the Target</h1>
+<p>
+The Coldfire debugger supports downloading image files into targets. This process can be done by two methods.
+</p>
+<ul>
+<li>Internal Programmer (using GDB interface)</li>
+<li>External Programmer</li>
+</ul>
+<p>
+Internal programmer connects to the board using GDB/MI and download the image file into the board. By using 
+this method you don't need any external tools to program the target. But this method depends to GDB supports
+the target. For customized target, you should use external tools like CF-Flasher. The external programmer
+provides an interface to pass corresponding parameters to the tool in command line mode. When you start
+debug session, by default debugger load selected image into the board using GDB, then start image from its
+main function (it's the default case, you can change it at the <b>Intialize</b> tab of your debug configurations.
+<br />
+<b>Note: Use external tools which supports command line parameters (with or without UI).</b>   
+</p>
+<h3>Programming the Board</h3>
+<p>
+GDB can load image files (e.g. ELF) into the selected target using 'load' command, if you have a standard board
+which is introduced to the GDB, you can program it using the following steps. Consider that before these steps,
+you should set desired programmer (Internal or External) in the preferences page (described in the next section).
+<br />
+<b>Note: You should compile and build your project before using programmers in order to select the image.</b>
+<br /><br />
+<b>Step 0: </b> Single Click on your working project to make it currently selected project.
+<br />
+<b>Step 1: </b> Select <b>Program Coldfire Targets</b> button from the Eclipse toolbar.
+<br />
+<img src="../images/cfd_programming1.jpg" alt="Programmer Button">
+<br />
+A window contains list of avaiable images of the selected projects will apears.
+<br />
+<b>Step 2: </b> Select desired image you wish programmer to downlaod into the board.
+<br />
+<b>Step 3: </b> Click <b>Program Image</b>.
+<br />
+<img src="../images/cfd_programming3.jpg" alt="Programmer Window">
+<br />
+The programmer shows you confirmation if download was successfull.
+<br />
+</p>
+<h3>Programmer Settings</h3>
+<p>
+By default, the Coldfire debugger will download using its internal programmer. You can change this setting
+in the <b>Window > Preferences... > Coldfire Debugger</b> page (It's also a category). This pages
+contains a tickmark box to select internal programmer. If you select external programmer, you should also sets 
+shape of parameters passing to the external tool. &lt;%IMAGE&gt;s will be replaces by the selected image
+to download. Place &lt;%IMAGE&gt;s where the image path should be. For internal programmer you don't need
+to provide this string.
+<br />
+<img src="../images/cfd_programming2.jpg" alt="Programmer Preferences" />
+</p>
+</body>
+</html>

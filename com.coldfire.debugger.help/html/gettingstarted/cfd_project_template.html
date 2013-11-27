@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Creating Project From Template (Coldfire Debugger)</title>
+	<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="UTF-8" TYPE="text/css">
+</head>
+<body>
+<h1>Creating Project from Template</h1>
+<p>
+The Coldfire debugger provides some project template to make getting rid of some hard tasks easy. A 
+programmer should add includes after creating raw Coldfire project, create main file, build Makefile, etc.
+The templates are avaiable at the time you are selecting the project type. Just expand the <b>Coldfire Debugger
+Project</b> when you select the project name, and select one of the avaiable templates. The most useful and
+expandable one is Hello World! template. It makes source and includes folder, add corresponding includes and
+create appropriate makefile ready to build.
+<br />
+<img src="../images/cfd_project_template1.jpg" alt="project template">
+<br />
+The following describe steps to create a project from Hello World! template.</p>
+<h3>Creating Hello World! Project</h3><br />
+<ol>
+  <li>Select File->New->Project menu. 
+  <br /><img src="../images/cfd_new_project1.jpg" alt="New Project menu"></li>
+  <li>In the new project wizard page, expand C or C++ folder and select C or C++
+  project. Then click Next.<br /><img src="../images/cfd_project_template1.jpg" alt="C++ Project page"></li> 
+  <li>Enter the project name. Expand Coldfire Debugger Project from the project 
+  types list then select Coldfire Hello World! entry, and select Coldfire GNU toolchain as 
+  the project toolchain. Click Finish (By default the Coldfire Debugger will choose m68k-elf 
+  as toolchain. But you can change the makeing parameters by clicking the next button).A new project
+  will be added to the workspace package explorer view.
+  <br /><b>At this time the debugger only supports Debug method. You can
+	remove debug informations inside the Project Builder properties by removing the
+	-g parameters tick.</b><br /><img src="../images/cfd_new_project3.jpg" alt="Toolchain settings"></li> 
+</ol>
+
+</body>
+</html>

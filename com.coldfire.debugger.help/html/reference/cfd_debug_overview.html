@@ -1,0 +1,43 @@
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Debug Overview (Coldfire Debugger)</title>
+	<LINK REL="STYLESHEET" HREF="../book.css" CHARSET="UTF-8" TYPE="text/css">
+</head>
+<body>
+<h1>Debug Overview</h1>
+<p>
+The debugger lets you see what's going on "inside" a program while it executes.
+<br>
+In order to debug your application, you must use executables compiled for debugging.
+These executables contain additional debug information that lets the debugger make 
+direct associations between the source code and the binaries generated from that original source. To add
+debug information to your executables using Coldfire Debugger, in the Coldfire GNU toolchain settings select 
+the check box indicating adding -g parameter to the compiler.
+</p>
+<h3>Adding Debug informations to the project executables</h3>
+<p>
+<b>Step 1:</b> Right click on the working project name and Select <b>Properties...</b>. 
+<br />
+<b>Step 2:</b> Select <b>C/C++ Build > Settings</b>. 
+<br />
+<b>Step 3:</b> Select <b>m68k compiler > Other options</b> under <b>Tool settings</b> Tab. 
+<br />
+<img src="../images/cfd_debug_overview1.jpg" alt="Coldfire toolchain setting">
+<br />
+<b>Step 4:</b> Mark <b>Generate Debugging Info (-g)</b>. 
+<br />
+<b>Step 4:</b> Click <b>OK</b>. 
+<br />
+</p>
+<p>
+The Coldfire debugger uses GDB as the underlying debug engine. It translates each user 
+interface action into a sequence of GDB commands and processes the output from GDB to 
+display the current state of the program being debugged. 
+<br />
+Tip: Editing the source after compiling causes the line numbering to be out of step 
+because the debug information is tied directly to the source. Similarly, debugging optimized 
+binaries can also cause unexpected jumps in the execution trace.
+</p>
+</body>
+</html>
